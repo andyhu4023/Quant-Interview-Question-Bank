@@ -1,0 +1,60 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{comment}
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\normalfont}{\thesection}{1em}{}
+
+\newcounter{problem}
+\newcounter{solution}
+
+\newcommand\Problem{%
+  \stepcounter{problem}%
+  \textbf{\theproblem.}~%
+  \setcounter{solution}{0}%
+}
+
+\newcommand\TheSolution{%
+  \textbf{Solution:}\\%
+}
+
+\newcommand\ASolution{%
+  \stepcounter{solution}%
+  \textbf{Solution \thesolution:}\\%
+}
+
+\includecomment{teacher}
+\begin{document}
+\chapter{Probability}
+
+\Problem
+You have a bag with two coins. One will come up heads $40\%$ of the time,and the other will come up heads $60\%$. You pick a coin randomly, flip it and get a head. What is the probability it will be heads on the next flip?
+
+
+\begin{teacher}
+\thesolution
+Tag: Bayes Formula\\
+
+Solution:
+
+Denote H: get a head, $E_i$ pick coin i, then:  
+$$P(E_1|H) = \frac{P(H|E_1) P(E_1)} {P(H|E_2) P(E_2) + P(H|E_1) P(E_1)} = \frac{0.4*0.5}{0.4*0.5 + 0.6*0.5}= 0.4$$
+$$P(H') = P(H'|E_1)P(E_1) + P(H'|E_2)P(E_2)= 0.4*0.4 + 0.6*0.6 = 0.52$$
+\end{teacher}
+
+
+\section
+dfd
+\begin{teacher}
+dsds
+\end{teacher}
+
+What is the Law of Large Numbers? The Central Limit Theorem? Give
+an example(s) of a distribution that satisfies one, but not both.
+
+\begin{teacher}
+solution2
+\end{teacher}
+
+
+\end{document}

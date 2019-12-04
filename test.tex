@@ -1,0 +1,92 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{a4wide}
+\usepackage[english]{babel}
+\usepackage[copyexercisesinsolutions]{exsol}
+\title{Gobal example, from the \textsf{ExSol} package}
+\author{Walter Daems}
+\setlength{\parindent}{0em}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+In this text we explain how to solve second-order polynomial
+equations.
+\section{Solving second-order polynomial equations}
+\begin{informulacollectiononly}
+\section*{Solving second-order polynomial equations}
+\end{informulacollectiononly}
+\begin{informulacollection}
+The roots of the following equation
+\begin{equation}
+a x^2 + bx + c = 0
+\end{equation}
+can be determined as:
+\begin{equation}
+x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4 a c}}{2 a}
+\end{equation}
+\end{informulacollection}
+\begin{exercises}[columns = 2]
+\begin{exercise}
+Solve the following equation for $x \in C$, with $C$ the set of
+complex numbers:
+\begin{equation}
+5 x^2 -3 x = 5
+\end{equation}
+\end{exercise}
+\begin{solution}
+Let’s start by rearranging the equation, a bit:
+\begin{eqnarray}
+5.7 x^2 - 3.1 x &=& 5.3\\
+5.7 x^2 - 3.1 x -5.3 &=& 0
+\end{eqnarray}
+The equation is now in the standard form:
+\begin{equation}
+a x^2 + b x + c = 0
+\end{equation}
+For quadratic equations in the standard form, we know that two
+solutions exist:
+\begin{equation}
+x_{1,2} = \frac{ -b \pm \sqrt{d}}{2a}
+\end{equation}
+with
+\begin{equation}
+d = b^2 - 4 a c
+\end{equation}
+5
+If we apply this to our case, we obtain:
+\begin{equation}
+d = (-3.1)^2 - 4 \cdot 5.7 \cdot (-5.3) = 130.45
+\end{equation}
+and
+\begin{eqnarray}
+x_1 &=& \frac{3.1 + \sqrt{130.45}}{11.4} = 1.27\\
+x_2 &=& \frac{3.1 - \sqrt{130.45}}{11.4} = -0.73
+\end{eqnarray}
+The proposed values $x = x_1, x_2$ are solutions to the given equation.
+\end{solution}
+\begin{exercise}
+Consider a 2-dimensional vector space equipped with a Euclidean
+distance function. Given a right-angled triangle, with the sides
+$A$ and $B$ adjacent to the right angle having lengths, $3$ and
+$4$, calculate the length of the hypotenuse, labeled $C$.
+\end{exercise}
+\begin{solution}
+This calls for application of Pythagoras’ theorem, which
+tells us:
+\begin{equation}
+\left\|A\right\|^2 + \left\|B\right\|^2 = \left\|C\right\|^2
+\end{equation}
+and therefore:
+\begin{eqnarray}
+\left\|C\right\|
+&=& \sqrt{\left\|A\right\|^2 + \left\|B\right\|^2}\\
+&=& \sqrt{3^2 + 4^2}\\
+&=& \sqrt{25} = 5
+\end{eqnarray}
+Therefore, the length of the hypotenuse equals $5$.
+\end{solution}
+\end{exercises}
+And now, we can come to conclusion.
+\section{Conclusion}
+Solving second-order polynomial equations is very easy.
+\end{document}
