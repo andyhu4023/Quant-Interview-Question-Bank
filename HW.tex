@@ -1,60 +1,306 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[10pt]{report}
 \usepackage{comment}
-\usepackage{titlesec}
-
-\titleformat{\section}
-  {\normalfont}{\thesection}{1em}{}
-
-\newcounter{problem}
-\newcounter{solution}
-
-\newcommand\Problem{%
-  \stepcounter{problem}%
-  \textbf{\theproblem.}~%
-  \setcounter{solution}{0}%
-}
-
-\newcommand\TheSolution{%
-  \textbf{Solution:}\\%
-}
-
-\newcommand\ASolution{%
-  \stepcounter{solution}%
-  \textbf{Solution \thesolution:}\\%
-}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\newtheorem{exe}{}[chapter]
+\newenvironment{sol}{\begin{proof}[Solution:]}{\end{proof}}
 
 \includecomment{teacher}
 \begin{document}
 \chapter{Probability}
 
-\Problem
-You have a bag with two coins. One will come up heads $40\%$ of the time,and the other will come up heads $60\%$. You pick a coin randomly, flip it and get a head. What is the probability it will be heads on the next flip?
-
-
+\begin{exe}
+    You have a bag with two coins. One will come up heads $40\%$ of the time and the other will come up heads $60\%$. You pick a coin randomly, flip it and get a head. What is the probability it will be heads on the next flip?
+\end{exe}
 \begin{teacher}
-\thesolution
-Tag: Bayes Formula\\
-
-Solution:
-
-Denote H: get a head, $E_i$ pick coin i, then:  
+Tag: Bayes Formula 
+\begin{sol}
+Notations of events:\\
+$H$ -- Get a head;\\
+$E_i$ -- Picked coin i;\\
+$H'$ -- Get a head next time.\\
+From Bayes formula, we have:
 $$P(E_1|H) = \frac{P(H|E_1) P(E_1)} {P(H|E_2) P(E_2) + P(H|E_1) P(E_1)} = \frac{0.4*0.5}{0.4*0.5 + 0.6*0.5}= 0.4$$
-$$P(H') = P(H'|E_1)P(E_1) + P(H'|E_2)P(E_2)= 0.4*0.4 + 0.6*0.6 = 0.52$$
+
+\begin{equation*} \label{1}
+\begin{split}
+P(H'|H) & = P(H'|E_1,\ H)P(E_1|H) + P(H'|E_2,\ H)P(E_2|H) \\
+ & = 0.4*0.4 + 0.6*0.6 = 0.52
+\end{split}
+\end{equation*} 
+\end{sol}
 \end{teacher}
 
-
-\section
-dfd
+\begin{exe}
+What is the Law of Large Numbers and The Central Limit Theorem? What are the differences between them?
+\end{exe}
 \begin{teacher}
-dsds
+\begin{sol}
+The Law of Large Numbers:\\
+For a infinite sequence of i.i.d Lebesgue integrable random variables $\{X_1, X_2, \cdots\}$ with $E(X_i) = \mu$. Then the sample mean $\bar{X_n} := \frac{X_1+\cdots+X_n}{n}$ converge in probability to $\mu$. i.e. for any small $\epsilon>0$, 
+$$\lim_{n\rightarrow \infty} P(|\Bar{X_n}-\mu| >\epsilon) = 0$$
+The Central Limit Theorem:\\
+For a infinite sequence of i.i.d random variables $\{X_1, X_2, \cdots\}$ with $E(X_i) = \mu$ and $Var(X_i) = \sigma^2$. Denote the sample mean by $\bar{X_n} := \frac{X_1+\cdots+X_n}{n}$. Then the random variable $\frac{\bar{X_n} - \mu}{\sigma/\sqrt{n}}$ converge in distribution to $N(0, 1)$, i.e. the cumulative distribution function $F_n$ converge to the normal cumulative distribution $\Phi$.\\
+The law of large number tells us that the sample mean is an unbiased estimator of expected value while the central limit theorem tells us about the asymptotic distribution of the same mean, concluding that it is also consistent. 
+\end{sol}
 \end{teacher}
 
-What is the Law of Large Numbers? The Central Limit Theorem? Give
-an example(s) of a distribution that satisfies one, but not both.
-
+\begin{exe}
+Suppose you have a fair coin, and you flip it a million times. Estimate the probability that you get fewer than 499,000 heads.
+\end{exe}
 \begin{teacher}
-solution2
+Tag: Central Limit Theorem
+\begin{sol}
+From the CLT, the outcome distribution is closed to $N(0.5M, 0.25M)$. The standard deviation is $0.5k=500$. So $P(N<499,000) = \Phi(\frac{499,000 - 500, 000}{500}) = \Phi(-2) = 0.02275$. (The number is checked from the table, should be acceptable to use $\Phi(-2$ as the final answer.)
+\end{sol}
 \end{teacher}
+
+\begin{exe}
+In front of you is a jar of 1000 coins. One of the coins has two heads,and the rest are fair coins. You choose a coin at random, and flip it ten times, getting all heads. What is the probability it is one of the fair coins?
+\end{exe}
+\begin{teacher}
+Tag: Bayes Formula
+\begin{sol} 
+Notation of events:\\
+F -- Pick a fair coin;\\
+S -- Pick a two-head coin;\\
+H -- Flip 10 times, all heads.\\
+\begin{equation*}
+\begin{split}
+    P(F|H) &= \frac{P(H|F)P(F)}{P(H|F)P(F) + P(H|S)P(S)}\\
+    & = 0.5^{10}*0.999/(0.5^{10}*0.999+1*0.001) \approx 0.5
+\end{split}
+\end{equation*}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Starting at one vertex of a cube, and moving randomly from
+vertex to adjacent vertices, what is the expected number of moves until you
+reach the vertex opposite from your starting point?
+\end{exe}
+\begin{teacher}
+Tag: Markov Process
+\begin{sol}
+Notation of states: (By the distance to the origin)\\
+$S_0$ -- the origin;\\
+$S_1$ -- the vertices next to origin;\\
+$S_2$ -- the vertices next to opposite;\\
+$S_3$ -- the opposite.\\
+Denote $E(S_i)$ to be the expected moves to get to the opposite. Suppose we are in $S_0$, then after one move, we are in $S_1$. Now suppose we are in $S_1$, then we have 1/3 chance we will move back to $S_0$ and 2/3 chances to move to $S_2$. Similar for analysis on $S_2$. Finally if we are in $S_3$, then $E(S_3)=0$. Therefor, we have the equations:
+\begin{align*}
+E(S_0) &= 1+E(S_1)\\    
+E(S_1) &= 1+\frac{1}{3}E(S_0)+\frac{2}{3}E(S_2)\\
+E(S_2) &= 1+\frac{1}{3}E(S_3)+\frac{2}{3}E(S_1)\\
+E(S_3) &= 0
+\end{align*}
+Solve and get $E(S_0)=10,\ E(S_1) =9,\ E(S_2) = 7$.
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Give an example of random variables that are normal, uncorrelated, and dependent.
+\end{exe}
+\begin{teacher}
+Tag: Normal Distribution
+\begin{sol}
+Denote $X\sim N(0,1)$ and $Z$ has equal chance to be 1 or -1. Then $Y=ZX$. We can show that $Y$ is normal, $Cov(X, Y)=0$ and $Y$ is dependent on $X$ (simple from $f(0, 0) = p(0)\neq p(0)^2$, where $f$ is the joint density for $(X, Y)$ and $p$ if density function for normal distribution.)
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+$X \sim N(\mu_X, \sigma_X^2)$ and $Y \sim N(\mu_Y, \sigma_Y^2)$ are independent, and you know $X + Y = s$. What is the expected value of $X$?
+\end{exe}
+\begin{teacher}
+Tag: Normal Distribution
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+You have a spinner that generates random numbers that are uniform between 0 and 1. You sum the spins until the sum is greater than one. What is the expected number of spins?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+We first need to reorganize the formula for expectation:\\
+\begin{align*}
+E(n) &= P(n=1) +2P(n=2) +3P(n=3)+\cdots \\
+&=P(n\geq1) + P(n\geq 2) +P(n\geq3)
+\end{align*}
+Then we need to find the formula for $P(n\geq i)$ for all $i \in N$. The event $n\geq k$ is equivalent to $X_1+X_2+\cdots X_{k-1}\leq 1$, where $X_i$ are i.i.d. uniform on $[0,1]$. $(X_1, X_2, \cdots, X_k)$ are uniform in the area $[0,1]^k$ and we need to calculate the volume bounded by $X_i\geq 0$ and $\sum\limits_{i=1}^k X_i \leq 1$.
+\begin{align*}
+    V &=\int_0^1\int_0^{1-x_1}\cdots \int_0^{1-(x_1+x_2+\cdots x_n)} 1dx_{n+1}dx_n \cdots dx_1\\
+    &=\int_0^1\int_0^{1-x_1}\cdots \int_0^{1-(x_1+\cdots +x_{n-1})}1-(x_1+\cdots x_n)dx_n\cdots dx_1\\
+    &= \int_0^1\int_0^{1-x_1}\cdots \int_0^{1-(x_1+\cdots+x_{n-1})}ydydx_1\\
+    & (y=1-(x_1+ \cdots +x_n)) \\
+    &=\int_0^1\int_0^{1-x_1}\cdots \int_0^{1-(x_1+\cdots+x_{n-2})}\frac{1}{2}(1-(x_1+\cdots+x_{n-1}))^2dx_{n-1} dx_1\\
+    &(similar\ trick\ apply)\\
+    &=\int_0^1\int_0^{1-x_1}\cdots \int_0^{1-(x_1+\cdots+x_{n-3})}\frac{1}{3!}(1-(x_1+\cdots+x_{n-2}))^3dx_{n-2} dx_1\\
+    &=\int_0^1 \frac{1}{n!}y^ndy = \frac{1}{(n+1)!}
+\end{align*}
+So our final result is $E(n)=\sum\limits_{k=0}^{\infty} \frac{1}{k!}=e$. \\
+(Remember the Taylor expansion of $e^x = \sum\limits_{n=1}^{\infty} \frac{x^n}{n!}$.)
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+A stick is broken randomly into 3 pieces. Two broken points are uniformly distributed on $[0,1]$. What is the probability of three pieces being able to form a triangle?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+A stick is broken randomly into two pieces, i.e. the broken point is uniform random variable on $[0, 1]$. The larger piece is then broken randomly into two pieces, i.e. the second broken points are uniform random variable on $[0, X]$, where $X$ is the length of the longer piece. What is the probability of the pieces being able to form a triangle?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+You play a game where you toss two fair coins in the air. You always win 1 dollar. However, if you have tossed 2 heads at least once, and 2 tails at least once, you surrender all winnings, and cannot play again. You may stop playing at anytime. What's your strategy?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[St. Petersburg Paradox]
+Consider the following game played by flipping a fair coin. The pot begins at a 1 dollar, and the pot doubles until a tail is flipped, at which point you receive the pot. Assume you can play as many times as you want. What would you pay to play this game?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Monte Hall Problem]
+You are on a game show, and there are 3 doors. Two of the doors conceal something worthless, and one door conceals a valuable prize. The game show host, Monte Hall, knows where the prize is. He lets you pick a door, then he opens one of the remaining two doors to reveal something worthless. He then offers you the chance to switch doors. Should you? How would you convince someone else of your answer?
+\end{exe}
+Tag: Bayes formula
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is the expected number of rolls of a fair die needed to get all six
+numbers?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+You have a bucket of unfair coins. Each coin has a probability of getting heads, p, which is uniformly distributed between zero and one. You pick a coin, and flip it 64 times, getting 48 heads. What is the expected value of p for your coin?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+A room of 100 people put their business cards in a hat, then each person randomly draws a business card. What's the expected number of people who draw their own business card?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+A red ant and a black ant are at opposite vertices of a cube. Each randomly picks an edge to traverse and moves to the next vertex. They continue this until they meet. What is the expected number of edges each ant traverses?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+If you roll a die repeatedly, what is the expected number of rolls until you see consecutive sixes?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Alex and Beth take turns flipping a pair of coins. The first person to flip a pair of heads wins the game. Alex flips first. Beth eventually wins. What is the probability she flipped a pair of heads on her second turn?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Hanxi flips a fair coin 11 times, and Aixi flips the coin 10 times. How likely is it that Hanxi flipped more heads than Aixi?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+\begin{exe}
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+
+\chapter{Calculus}
 
 
 \end{document}
