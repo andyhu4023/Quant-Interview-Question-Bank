@@ -49,7 +49,7 @@ The law of large number tells us that the sample mean is an unbiased estimator o
 Suppose you have a fair coin, and you flip it a million times. Estimate the probability that you get fewer than 499,000 heads.
 \end{exe}
 \begin{teacher}
-Tag: Central Limit Theorem
+Tag: Central Limit Theorem, Normal Distribution
 \begin{sol}
 From the CLT, the outcome distribution is closed to $N(0.5M, 0.25M)$. The standard deviation is $0.5k=500$. So $P(N<499,000) = \Phi(\frac{499,000 - 500, 000}{500}) = \Phi(-2) = 0.02275$. (The number is checked from the table, should be acceptable to use $\Phi(-2$ as the final answer.)
 \end{sol}
@@ -114,6 +114,20 @@ $X \sim N(\mu_X, \sigma_X^2)$ and $Y \sim N(\mu_Y, \sigma_Y^2)$ are independent,
 \begin{teacher}
 Tag: Normal Distribution
 \begin{sol}
+We need to use the following lemma:\\ 
+If $(X, Y)$ are bivariate normal distributed, then $(a_1X+b_1Y, a_2X+b_2Y)$ are also bivariate normal for any real coefficients $a_1,\ a_2,\ b_1,\ b_2$. Moreover, if $X,\ Y$ are uncorrelated, i.e. $Cov(X, Y)=0$, then they are independent.\\
+(It is unlikely you need to prove that. It may be given as hint in some cases)\\
+From the lemma, we can deduce the orthogonal decomposition of $X$ as:
+$$X=(X-\frac{Cov(X,Y)}{Var(X)}Y) + \frac{Cov(X,Y)}{Var(X)}Y$$
+For this problem, let's consider $(X, Z:=X+Y)$, which is bivariate normal from the lemma. We can see that $E(Z) = \mu_X+\mu_Y$ and $Var(Z) = \sigma_X^2+\sigma_Y^2$, $Cov(X,Z)= Cov(X,X)+Cov(X,Y) = \sigma_X^2$. We need to calculate $E(X|Z=s)$.
+\begin{align*}
+    E(X|Z=s) &=E(X-\frac{Cov(X,Z)}{Var(X)}Z) + \frac{Cov(X,Z)}{Var(X)}Z|Z=s)\\
+    &=E(X-\frac{Cov(X,Z)}{Var(X)}Z|Z=s) + E(\frac{Cov(X,Z)}{Var(X)}Z|Z=s)\\
+    &=E(X-\frac{Cov(X,Z)}{Var(X)}Z)+\frac{Cov(X,Z)}{Var(X)}s\\
+    &(By\ independence)\\
+    &=\mu_X - \frac{\sigma_X^2}{\sigma_X^2}(\mu_X+\mu_Y) + \frac{\sigma_X^2}{\sigma_X^2}s\\
+    &=s-\mu_Y
+\end{align*}
 \end{sol}
 \end{teacher}
 
@@ -127,7 +141,7 @@ We first need to reorganize the formula for expectation:\\
 E(n) &= P(n=1) +2P(n=2) +3P(n=3)+\cdots \\
 &=P(n\geq1) + P(n\geq 2) +P(n\geq3)
 \end{align*}
-Then we need to find the formula for $P(n\geq i)$ for all $i \in N$. The event $n\geq k$ is equivalent to $X_1+X_2+\cdots X_{k-1}\leq 1$, where $X_i$ are i.i.d. uniform on $[0,1]$. $(X_1, X_2, \cdots, X_k)$ are uniform in the area $[0,1]^k$ and we need to calculate the volume bounded by $X_i\geq 0$ and $\sum\limits_{i=1}^k X_i \leq 1$.
+Then we need to find the formula for $P(n\geq i)$ for all $i \in N$. The event $n\geq k+1$ is equivalent to $X_1+X_2+\cdots X_{k}\leq 1$, where $X_i$ are i.i.d. uniform on $[0,1]$. $(X_1, X_2, \cdots, X_k)$ are uniform in the area $[0,1]^k$ and we need to calculate the volume bounded by $X_i\geq 0$ and $\sum\limits_{i=1}^k X_i \leq 1$.
 \begin{align*}
     V &=\int_0^1\int_0^{1-x_1}\cdots \int_0^{1-(x_1+x_2+\cdots x_n)} 1dx_{n+1}dx_n \cdots dx_1\\
     &=\int_0^1\int_0^{1-x_1}\cdots \int_0^{1-(x_1+\cdots +x_{n-1})}1-(x_1+\cdots x_n)dx_n\cdots dx_1\\
@@ -171,16 +185,27 @@ You play a game where you toss two fair coins in the air. You always win 1 dolla
 Consider the following game played by flipping a fair coin. The pot begins at a 1 dollar, and the pot doubles until a tail is flipped, at which point you receive the pot. Assume you can play as many times as you want. What would you pay to play this game?
 \end{exe}
 \begin{teacher}
+Tag: Default Risk
 \begin{sol}
+The price should be equal to the expected payoff as it can be played many times. The game is a geometric process
+
 \end{sol}
 \end{teacher}
 
 \begin{exe}[Monte Hall Problem]
-You are on a game show, and there are 3 doors. Two of the doors conceal something worthless, and one door conceals a valuable prize. The game show host, Monte Hall, knows where the prize is. He lets you pick a door, then he opens one of the remaining two doors to reveal something worthless. He then offers you the chance to switch doors. Should you? How would you convince someone else of your answer?
+You are on a game show, and there are 3 doors. Two of the doors conceal nothing, and one door conceals a prize. The game show host, Monte Hall, knows where the prize is. He lets you pick a door. You picked, say, door 1. If you pick the door of prize, he will randomly open one remaining door. If you pick the door of nothing, then he opens the other door of nothing. Suppose he open the door 2. Finally he then offers you the chance to switch doors. What should you do? Please justify your action. (If you have completely no idea, you may just say "Toss a coin and let the god guide me!". LOL) 
 \end{exe}
-Tag: Bayes formula
 \begin{teacher}
+Tag: Bayes formula
 \begin{sol}
+Notations of events:\\
+$D_i$ -- the price are inside door i;\\
+$O_2$ -- the host open the door 2.
+\begin{align*}
+    P(D_1|O_2) &= \frac{P(O_2|D_1)P(D_1)}{P(O_2|D_1)P(D_1)+P(O_2|D_2)P(D_2)+P(O_2|D_3)P(D_3)}\\
+    &=\frac{\frac{1}{2}*\frac{1}{3}}{\frac{1}{2}*\frac{1}{3}+0*\frac{1}{3}+1*\frac{1}{3}}=\frac{1}{3}
+\end{align*}
+Similarly, we can have $P(D_2|O_2)=0$ and $P(D_3|O_2) = \frac{2}{3}$. So you should switch to door 3.
 \end{sol}
 \end{teacher}
 
@@ -233,64 +258,292 @@ Alex and Beth take turns flipping a pair of coins. The first person to flip a pa
 \end{sol}
 \end{teacher}
 
-\begin{exe}
+\begin{exe}[Coin toss game]
 Hanxi flips a fair coin 11 times, and Aixi flips the coin 10 times. How likely is it that Hanxi flipped more heads than Aixi?
 \end{exe}
 \begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Card game]
+A casino offers a simple card game. There are 52 cards in a deck with 4 cards for each
+value 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A. Each time the cards are thoroughly shuffled
+(so each card has equal probability of being selected). You pick up a card from the deck
+and the dealer picks another one without replacement. If you have a larger number, you
+win; if the numbers are equal or yours is smaller, the house wins. What is your probability of winning? 
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[N points on a circle]
+Given N points drawn randomly on the circumference of a circle, what is the probability that they are all within a semicircle?
+\end{exe}
+\begin{teacher}
+Source: Pratical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Drunk passenger]
+A line of 100 airline passengers are waiting to board a plane. They each hold a ticket of one of the 100 seats on the flight. For convenience, the n-th passenger holds the ticket for seat n. Being drunk, the first person in line picks a random seat (equal probability for all seats). All other passengers are sober. They will go to their seats unless it is occupied. In such case, they will pick a free seat randomly (also equal probability for all free seats). Suppose you hold ticket for seat 100, what is the probability that you end up in your seat (i.e. seat 100)?
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Poker hands]
+What is the probability of getting four-of-a-kind/Full House/two pair?
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Hopping rabbit]
+A rabbit sits at the bottom of a staircase with 10 stairs. It can only hop up only one or two stairs at a time. How many ways for it to ascend to the top of stairs.
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
 \begin{sol}
 \end{sol}
 \end{teacher}
 
 \begin{exe}
+You are on the grid $(0, 0)$. You may move right or up by 1 grid each step. How many ways are there for you to move to $(10, 10)$?
 \end{exe}
 \begin{teacher}
 \begin{sol}
 \end{sol}
 \end{teacher}
-\begin{exe}
-\end{exe}
-\begin{teacher}
-\begin{sol}
-\end{sol}
-\end{teacher}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \begin{exe}
+You have 5 balls label 1 to 5 and 5 boxes label 1 to 5. The balls are randomly put into the boxes. What is the probability of all balls are put to a box with a different number?
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+\begin{exe}[Chess tournament]
+A chess tournament has $2^n$ players with skills $1>2>\cdots>2^n$. It is organized as a
+knockout tournament, so that after each round only the winner proceeds to the next
+round. Except for the final, opponents in each round are drawn at random. Let's also
+assume that when two players meet in a game, the player with better skills always wins.
+What's the probability that players 1 and 2 will meet in the final?
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[100th digit]
+What is the 100-th digit of $(1+\sqrt{2})^3000$? Equivalently, what is the unit digit of $(1+\sqrt{2})^3000*10^100$?\\
+Hint: $(1+\sqrt{2})^2 + (1-\sqrt{2})^2=6$
+
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+How many numbers $x$ are there less that $10^6$ that the cubic of $x$ ends with 11, i.e. $x^3\ mod\  100=11$?
+\end{exe}
+\begin{teacher}
+Source: Practical Guide
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
 
 \end{exe}
 \begin{teacher}
@@ -300,7 +553,50 @@ Hanxi flips a fair coin 11 times, and Aixi flips the coin 10 times. How likely i
 
 
 
-\chapter{Calculus}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{exe}
+
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+
+\chapter{Calculus and Linear Algebra}
 
 
 \end{document}
