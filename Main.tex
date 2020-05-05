@@ -1,26 +1,32 @@
-\documentclass[10pt]{report}
-\usepackage{comment}
-\usepackage{amsthm}
-\usepackage{amsmath}
-\newtheorem{exe}{}[chapter]
-\newenvironment{sol}{\begin{proof}[Solution:]}{\end{proof}}
+\documentclass[12pt]{book}
 
-\includecomment{teacher}
+\usepackage{amsmath}    % For math formulas
+\usepackage{graphicx}   % For images
+
+\include{preamble/exe_sol_env}
+
+% Book's title and subtitle
+\title{
+    \Huge \textbf{Practice Makes Quants} % \footnote{This is a footnote.} 
+    \\
+    \large Must solved problems to a qualified quant %\footnote{This is yet another footnote.}
+}
+% Author
+\author{\textsc{Andy Hu}} %\thanks{\url{www.example.com}}}
+
+
 
 \begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
 
-\include{probability}
+\mainmatter
+\include{content/1-probability}
+\input{content/2-calculus}
+\input{content/3-finance}
+\input{content/4-algorithms}
+\input{content/5-brain_teasers}
 
-\include{stochastic_process}
-
-\include{calculus}
-
-\include{linear_algebra}
-
-\include{brain_teaser}
-
-\include{finance}
-
-\include{algorithm}
-
+\backmatter
 \end{document}

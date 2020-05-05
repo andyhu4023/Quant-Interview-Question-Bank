@@ -1,0 +1,60 @@
+\documentclass[12pt]{book}
+
+\usepackage{amsmath}    % For math formulas
+\usepackage{graphicx}   % For images
+
+%%%%%%%%%%%%%%%%%%%%%%%%   Exercise and solution environment    %%%%%%%%%%%%%%%%%%%
+\usepackage{comment}
+\usepackage{amsthm}
+\newtheorem{exe}{}[chapter]
+\newenvironment{sol}{\begin{proof}[Solution:]}{\end{proof}}
+\includecomment{teacher}    % To comment out solution in problem only version.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%     Template     %%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Source: http://en.wikibooks.org/wiki/LaTeX/Hyperlinks %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref}
+\usepackage[english]{babel}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% First page of book which contains 'stuff' like: %
+%  - Book title, subtitle                         %
+%  - Book author name                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Book's title and subtitle
+\title{\Huge \textbf{Sample Book Title}  \footnote{This is a footnote.} \\ \huge Sample book subtitle \footnote{This is yet another footnote.}}
+% Author
+\author{\textsc{First-name Last-name}\thanks{\url{www.example.com}}}
+
+
+
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+\include{probability}
+
+\include{stochastic_process}
+
+\include{calculus}
+
+\include{linear_algebra}
+
+\include{brain_teaser}
+
+\include{finance}
+
+\include{algorithm}
+
+\end{document}

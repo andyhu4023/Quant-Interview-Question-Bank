@@ -1,0 +1,85 @@
+\documentclass[12pt]{book}
+\usepackage{comment}
+\usepackage{amsthm}
+\usepackage{amsmath}
+%%%%%%%%%%%%%%%%%%%%%%%%   Exercise solution environment    %%%%%%%%%%%%%%%%%%%
+\newtheorem{exe}{}[chapter]
+\newenvironment{sol}{\begin{proof}[Solution:]}{\end{proof}}
+\includecomment{teacher}
+
+\usepackage[width=4.375in, height=7.0in, top=1.0in, papersize={5.5in,8.5in}]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tipa}
+%\usepackage{txfonts}
+\usepackage{textcomp}
+%\usepackage{amsthm}
+%\usepackage{array}
+%\usepackage{xy}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt}
+\setlength{\footskip}{0in}
+\renewcommand{\footruleskip}{0pt}
+\fancypagestyle{plain}{%
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+}
+%
+%\parindent 0in
+\parskip 0.05in
+%
+
+
+% Book's title and subtitle
+\title{
+    \Huge \textbf{Practice Makes Quants} % \footnote{This is a footnote.} 
+    \\
+    \small Must solve problems to a qualified quant %\footnote{This is yet another footnote.}
+}
+% Author
+\author{\textsc{Andy Hu}} %\thanks{\url{www.example.com}}}
+
+\begin{document}
+\frontmatter
+\maketitle
+
+\newpage
+\subsection*{\center \normalsize Copyright \copyright 2009 by Suresh Emre}
+\subsection*{\center \normalsize All rights reserved.}
+\subsection*{\center \normalsize ISBN \dots}
+\subsection*{\center \normalsize \dots Publications}
+%
+\tableofcontents
+%
+\mainmatter
+%
+
+\include{probability}
+
+\include{stochastic_process}
+
+\include{calculus}
+
+\include{linear_algebra}
+
+\include{brain_teaser}
+
+\include{finance}
+
+\include{algorithm}
+
+
+\backmatter
+
+\end{document}
