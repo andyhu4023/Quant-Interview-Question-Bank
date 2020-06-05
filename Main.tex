@@ -1,4 +1,4 @@
-\documentclass[12pt]{book}
+\documentclass[12pt]{book} % chapter available
 
 \usepackage{amsmath}    % For math formulas
 \usepackage{graphicx}   % For images
@@ -12,7 +12,10 @@
     \large Must solved problems to a qualified quant %\footnote{This is yet another footnote.}
 }
 % Author
-\author{\textsc{Andy Hu}} %\thanks{\url{www.example.com}}}
+\author{
+    \textsc{Andy Hu}
+    %\thanks{\url{www.example.com}}
+} 
 
 
 
@@ -23,10 +26,12 @@
 
 \mainmatter
 \include{content/1-probability}
-\input{content/2-calculus}
-\input{content/3-finance}
-\input{content/4-algorithms}
-\input{content/5-brain_teasers}
+\include{content/2-calculus}
+\include{content/3-finance}
+\include{content/4-algorithms}
+\include{content/5-brain_teasers}
+\include{content/6-behaviour}
+
 
 \backmatter
 \end{document}

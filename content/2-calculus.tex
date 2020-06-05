@@ -1,1 +1,305 @@
 \chapter{Calculus and Linear Algebra}
+
+\section{Limits, Derivatives and Integrations}
+\begin{exe}[Limit]
+Use $\epsilon-\delta$ to explain the following equations:
+\begin{itemize}
+    \item $\lim\limits_{n \rightarrow \infty}a_n=0$
+    \item $\lim\limits_{n \rightarrow \infty}a_n \neq 0$
+    \item $\lim\limits_{x \rightarrow x_0} f(x) = 0$
+    \item $\lim\limits_{x \rightarrow x_0} f(x) \neq 0$
+\end{itemize}
+\end{exe}
+\begin{teacher}
+\begin{sol}
+The definitions are explained in the following:
+\begin{itemize}
+    \item $\forall \epsilon >0$, $\exists N_0$ s.t. $\forall N>N_0$, $|a_N-0|<\epsilon$.
+    \item $\exists \epsilon_0 >0$, $\forall N$, we can find $N_0>N$ s.t. $|a_{N_0} - 0| \geq \epsilon$.
+    \item $\forall \epsilon >0$, $\exists \delta >0$ s.t. $\forall |x-x_0|<\delta$, $|f(x) - 0|<\epsilon$.
+    \item $\exists \epsilon_0 >0$, $\forall \delta >0$, we can find $|x'-x_0|<\delta$ s.t. $|f(x') - 0| \geq \epsilon$.
+\end{itemize}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is the L'Hospital Rule?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is: $\sqrt{2}^{\sqrt{2}^{\sqrt{2}^{\cdots}}}$
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Which positive integer a makes $\sqrt{a+\sqrt{a+\sqrt{a+\cdots}}}$ an integer?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Does $\sum\limits_{n=1}^\infty \pi^{\sqrt{n}}$ exist?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+
+\begin{exe}
+How do you understand derivatives and integrations? What is the geometric intuition of these concept? What is the relation of these two concepts?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is the derivatives of the following functions:
+$x^n$, $e^x$, $\ln{x}$, $\sin{x}$, $\cos{x}$, $\tanh{x}$
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is the product rule, quotient rule, chain rule of derivatives?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is the general form of Taylor expansion? What is the Taylor expansion for the following functions:
+$e^x$, $\log{x}$, $\sin{x}$, $\cos{x}$.
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is integration by substitution? What is integral by parts?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+Integration by substitution:\\
+$\int f(g(x)) g'(x) dx = \int f(u) du$, where $u=g(x)$.\\
+Integration by parts:\\
+$\int f(x) dg(x) = f(x) g(x) - \int g(x) df(x)$
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Which is bigger: $e^\pi$ or $\pi^e$
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+What is $\int_0^{\infty} e^{-x^2/2} dx$?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+If $X\sim N(0,1)$, what is $E(X|X>0)$?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}
+Assume the snow started to fall some time before time 0 at constant speed. A plow start at time 0 from position 0 and it will remove constant volume per hour. For example, assume the current height of snow is H, width is W, the plow remove V for 1 hour. Then in the next dt period, the snow will become $H+hdt$, where $h$ is the speed of the snow and the plow will move $\frac{V}{HW}$ ahead. At time 1, the plow is observed to be in position 2 and at time 2, it is in position 3. What is the time the snow start to fall?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\section{Ordinary Differential Equation (ODE)}
+\begin{exe}[Separable]
+Solve the ODE: $y'+6xe^{x^2}cos^2y =0$.
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[First-Order Linear]
+Solve the ODE: $y'+\frac{y}{x}=\frac{1}{x^2}$
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+\begin{exe}[Homogeneous]
+Solve the ODE: $ay''+by'+cy=0$
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+\begin{exe}[Non-Homogeneous]
+Solve the ODE: $ay''+by'+cy=x$
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\section{Matrix Decomposition and Eigenvalues}
+\begin{exe}[Determinant]
+For an n by n matrix $A$, what is the definition of its determinant? What is the relation of determinants of $A$ with the eigenvalues of $A$? How to decide if $A$ is invertible given the determinant of $A$? Can you give some properties of the determinant?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Eigenvalue]
+What is the definition of eigenvalues and eigenvectors? In practice, how you will calculate these?
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Positive Definite]
+What is the definition of positive definite/semi-definite? For a positive definite/semi-definite matrix, what is the property of its eigenvalues and its upper left submatrix? Upper left $k$-submatrix of n by n $A$ is k by k matrix $A_k=(a_{i,j})\ \forall i,j\leq k$
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Diagonalize]
+Suppose an n by n matrix $A$ has n different eigenvalues. Find an orthogonal matrix $Q$ and diagonal matrix $D$ s.t. $A=QDQ^{-1}$.\\
+(What is the intuition and application of this decomposition)
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[QR Decomposition]
+For a non-singular matrix A, find a orthogonal matrix Q and upper triangular matrix R with positive diagonal s.t. $A=QR$.\\
+(What is the intuition and application of this decomposition)
+\end{exe}
+\begin{teacher}
+\begin{sol}
+There are several methods to find the decomposition. (More details found in WIKI.)  I will introduce Gram-Schmidt process here.
+
+Let's denote $A=(a_1, a_2, \cdots, a_n)$ as a basis of $n$-dim vector space. Define a function of inner product $<v, w>=\sum_{i=1}^n v_iw_i$ and the projection $proj_u(a) = \frac{<u,a>}{<u,u>}u$. 
+
+Then a set of orthoganal basis $(u_1, u_2, \cdots, u_n)$ can be generated by:
+\begin{align*}
+    u_1&=a_1,\\
+    u_2&=a_2-proj_{u_1}(a_2),\\
+    &\cdots\\
+    u_n&=a_n-\sum_{i=1}^{n-1}proj_{u_i}(a_n)
+\end{align*}
+Finally, the orthogonal normal basis $(e_1, e_2, \cdots, e_n)$ is normalized by $e_i = \frac{u_i}{|u_i|}$. 
+
+If you understand what a projection mean, you can convince yourself the basis $(u_1, u_2, \cdots, u_n)$ are orthogonal. But sometimes you may be request to prove it rigorously. So we will do the prove here by induction. The base case for 1-d is trivial. Suppose we already have shown $(u_1,\cdots,u_{k-1})$ is orthogonal, we need to show that $<u_k, u_i>=0 \quad \forall i<k$. By the construction of $u_k$, 
+\begin{align*}
+<u_k, u_i>&=<a_k-\sum_{j=1}{k-1}c_j u_j, u_i>\\
+&= <a_k,u_i> - c_i<u_i,u_i> \quad \text{(By induction assumption)}\\
+&= <a_k,u_i> - <a_k, u_i> \quad \text{($c_i$ is the coefficient of $proj_{u_i}(a_k)$)}\\
+&=0
+\end{align*}
+Notice that the projection function can be rewrite in the new basis as $\frac{<u_i,a_j>}{<u_i,u_i>}u=<e_i,a_j>$ and $u_i = <e_i, a_i>$. So the construction process can be written as:
+\begin{align*}
+    a_1&=<e_1,a_1>e_1,\\
+    a_2&=<e_1,a_2>e_1+<e_2,a_2>e_2\\
+    &\cdots\\
+    a_n&=\sum_{i=1}^{n}<e_i,a_n>e_i
+\end{align*}
+So we can write down the matrix $Q=(e_1, \cdots, e_n)$ and $R_{i,j} = <e_i, a_j>$ for $i\leq j$.
+
+A direct application is to trianglize the equation $Ax=b$ by $Rx=Q^Tb$. As $R$ is upper triangle matrix, solving this equation is much faster then solve a general $Ax=b$. This equation is widely seen and one common seen scenario in financial world is when you do multi-variable linear regression, you need to solve the coefficient by least square error.
+\end{sol}
+\end{teacher}
+
+\begin{exe}[LU Decomposition]
+For a n by n non-singular matrix A, find a lower triangle matrix $L$ and upper triangle matrix $U$, s.t. $A=LU$.\\
+(What is the intuition and application of this decomposition)
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+\begin{exe}[Singular Value Decomposition*]
+For an arbitrary m by n matrix A, find m by n matrix $U$, n by n diagonal matrix $D$ and n by n orthogonal matrix $V$, s.t. $A=UDV$.\\
+(What is the intuition and application of this decomposition)
+\end{exe}
+\begin{teacher}
+\begin{sol}
+\end{sol}
+\end{teacher}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{exe}
+
+% \end{exe}
+% \begin{teacher}
+% \begin{sol}
+% \end{sol}
+% \end{teacher}
